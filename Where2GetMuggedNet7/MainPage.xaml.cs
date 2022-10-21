@@ -52,8 +52,6 @@ public partial class MainPage : ContentPage
             client.ReconnectTimeout = null;
             client.MessageReceived.Subscribe(msg => UpdateClientLocation(msg));
             await client.Start();
-            Console.WriteLine("Connected.");
-            Console.Read();
         }
         Load();
     }
@@ -102,6 +100,7 @@ public partial class MainPage : ContentPage
 
     private async Task PublishLocation(Location location)
     {
+        location = new Location(47.645160, -122.1306032);
         var message = JsonConvert.SerializeObject(location);
         var serviceClient = new WebPubSubServiceClient(_connectionString, _hub);
         await serviceClient.SendToAllAsync(message);
