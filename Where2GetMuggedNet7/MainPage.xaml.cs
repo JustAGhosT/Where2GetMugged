@@ -48,8 +48,6 @@ public partial class MainPage : ContentPage
             client.ReconnectTimeout = null;
             client.MessageReceived.Subscribe(msg => UpdateClientLocation(msg));
             await client.Start();
-            Console.WriteLine("Connected.");
-            Console.Read();
         }
     }
 
