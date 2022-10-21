@@ -19,8 +19,11 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
 
+        Load();        
+    }
 
-
+    private void Load()
+    {
         var location = new Location(47.645160, -122.1306032);
         ResetLocation(location);
 
@@ -35,6 +38,7 @@ public partial class MainPage : ContentPage
         myTimer.Enabled = true;
 
         SubcribeToLocation();
+        
     }
 
     private async Task SubcribeToLocation()
@@ -51,6 +55,7 @@ public partial class MainPage : ContentPage
             Console.WriteLine("Connected.");
             Console.Read();
         }
+        Load();
     }
 
     private void ResetLocation(Location loc)
@@ -66,7 +71,7 @@ public partial class MainPage : ContentPage
     public async Task NavigateToBuilding25(Location location)
     {
 
-        var options = new MapLaunchOptions { Name = "Microsoft Building 25" };
+        var options = new MapLaunchOptions { Name = "Mugger", NavigationMode = NavigationMode.Driving};
         try
         {
             await Map.Default.OpenAsync(location, options);
