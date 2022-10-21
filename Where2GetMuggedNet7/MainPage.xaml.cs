@@ -1,12 +1,17 @@
-﻿using Microsoft.Maui.Devices.Sensors;
+﻿using Azure.Messaging.WebPubSub;
+using Microsoft.Maui.Devices.Sensors;
+using Newtonsoft.Json;
+using System.Net;
+using System.Text.Json.Nodes;
 using System.Timers;
+using static System.Net.WebRequestMethods;
 
 namespace Where2GetMuggedNet7;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
     private Location _location;
+    private string connectionString = @"Endpoint=https://wheretobemugged.webpubsub.azure.com;AccessKey=7x8vT+pF5baTrrDW5Qu8w8A/5pkFRF/8VtM2RjpZmHg=;Version=1.0;";
 
     public MainPage()
     {
@@ -62,11 +67,20 @@ public partial class MainPage : ContentPage
             Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
             _location = location;
             ResetLocation(_location);
+            await PublishLocation(_location);
         }
         catch
         {
             
         }
+    }
+    private Task PublishLocation(Location location)
+    {   
+        var hub = "pubsub";
+        var message = JsonConvert.SerializeObject(location);
+        var serviceClient = new WebPubSubServiceClient(connectionString, hub);
+        await serviceClient.SendToAllAsync(message);
+        return Task.CompletedTask;
     }
 }
 
