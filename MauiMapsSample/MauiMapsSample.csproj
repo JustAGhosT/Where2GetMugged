@@ -49,7 +49,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+<<<<<<< HEAD:MauiMapsSample/MauiMapsSample.csproj
 	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="6.0.409-nightly.10657" />
+=======
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0-rc.2.22430.11" />
+		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="6.0.550-ci.main.11789" />
+		<PackageReference Include="Microsoft.Maui.Maps" Version="6.0.550-ci.main.11789" />
+>>>>>>> origin/maps-setup:Where2GetMuggedNet7/Where2GetMuggedNet7.csproj
 	</ItemGroup>
 
 </Project>
