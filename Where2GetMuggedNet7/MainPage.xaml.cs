@@ -110,8 +110,7 @@ public partial class MainPage : ContentPage
         mappy.Pins.Add(new Microsoft.Maui.Controls.Maps.Pin
         {
             Label = "Client Location",
-            Location = clientLocation,
-            Type = Microsoft.Maui.Controls.Maps.Pin.T
+            Location = clientLocation
         });
     }
 }
