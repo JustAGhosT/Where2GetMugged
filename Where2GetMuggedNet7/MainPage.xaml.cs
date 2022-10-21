@@ -5,6 +5,7 @@ using System.Net;
 using System.Text.Json.Nodes;
 using System.Timers;
 using static System.Net.WebRequestMethods;
+using Websocket.Client;
 
 namespace Where2GetMuggedNet7;
 
@@ -18,7 +19,7 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
 
-        
+
 
         var location = new Location(47.645160, -122.1306032);
         ResetLocation(location);
@@ -36,9 +37,20 @@ public partial class MainPage : ContentPage
         SubcribeToLocation();
     }
 
-    private void SubcribeToLocation()
+    private async Task SubcribeToLocation()
     {
-        //throw new NotImplementedException();
+        var serviceClient = new WebPubSubServiceClient(_connectionString, _hub);
+        var url = serviceClient.GetClientAccessUri();
+
+        using (var client = new WebsocketClient(url))
+        {
+            // Disable the auto disconnect and reconnect because the sample would like the client to stay online even no data comes in
+            client.ReconnectTimeout = null;
+            client.MessageReceived.Subscribe(msg => UpdateClientLocation(msg));
+            await client.Start();
+            Console.WriteLine("Connected.");
+            Console.Read();
+        }
     }
 
     private void ResetLocation(Location loc)
@@ -53,11 +65,11 @@ public partial class MainPage : ContentPage
 
     public async Task NavigateToBuilding25(Location location)
     {
-        
+
         var options = new MapLaunchOptions { Name = "Microsoft Building 25" };
-        try 
-        { 
-            await Map.Default.OpenAsync(location, options); 
+        try
+        {
+            await Map.Default.OpenAsync(location, options);
         }
         catch (Exception ex)
         {         // No map application available to open     } }
@@ -68,10 +80,10 @@ public partial class MainPage : ContentPage
 
     private async Task GetCurrentLocation()
     {
-        try { 
-            _isCheckingLocation = true; 
-            GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10)); 
-            _cancelTokenSource = new CancellationTokenSource(); 
+        try {
+            _isCheckingLocation = true;
+            GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+            _cancelTokenSource = new CancellationTokenSource();
             Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
             _location = location;
             ResetLocation(_location);
@@ -79,14 +91,28 @@ public partial class MainPage : ContentPage
         }
         catch
         {
-            
+
         }
     }
+
     private async Task PublishLocation(Location location)
-    {   
+    {
         var message = JsonConvert.SerializeObject(location);
         var serviceClient = new WebPubSubServiceClient(_connectionString, _hub);
-        await serviceClient.SendToAllAsync(message);   
+        await serviceClient.SendToAllAsync(message);
+    }
+
+    private void UpdateClientLocation(ResponseMessage responseMessage)
+    {
+        var clientLocation = JsonConvert.DeserializeObject<Location>(responseMessage.Text);
+
+        //var pin = BitmapDescriptorFactory.FromAsset("car.png");
+        mappy.Pins.Add(new Microsoft.Maui.Controls.Maps.Pin
+        {
+            Label = "Client Location",
+            Location = clientLocation,
+            Type = Microsoft.Maui.Controls.Maps.Pin.T
+        });
     }
 }
 
