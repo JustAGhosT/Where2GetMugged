@@ -95,6 +95,7 @@ public partial class MainPage : ContentPage
 
     private async Task PublishLocation(Location location)
     {
+        location = new Location(47.645160, -122.1306032);
         var message = JsonConvert.SerializeObject(location);
         var serviceClient = new WebPubSubServiceClient(_connectionString, _hub);
         await serviceClient.SendToAllAsync(message);
