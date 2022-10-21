@@ -11,7 +11,8 @@ namespace Where2GetMuggedNet7;
 public partial class MainPage : ContentPage
 {
     private Location _location;
-    private string connectionString = @"Endpoint=https://wheretobemugged.webpubsub.azure.com;AccessKey=7x8vT+pF5baTrrDW5Qu8w8A/5pkFRF/8VtM2RjpZmHg=;Version=1.0;";
+    private string _connectionString = @"Endpoint=https://wheretobemugged.webpubsub.azure.com;AccessKey=7x8vT+pF5baTrrDW5Qu8w8A/5pkFRF/8VtM2RjpZmHg=;Version=1.0;";
+    private string _hub = "pubsub";
 
     public MainPage()
     {
@@ -31,6 +32,13 @@ public partial class MainPage : ContentPage
         myTimer.AutoReset = true;
         // And start it        
         myTimer.Enabled = true;
+
+        SubcribeToLocation();
+    }
+
+    private void SubcribeToLocation()
+    {
+        //throw new NotImplementedException();
     }
 
     private void ResetLocation(Location loc)
@@ -74,13 +82,11 @@ public partial class MainPage : ContentPage
             
         }
     }
-    private Task PublishLocation(Location location)
+    private async Task PublishLocation(Location location)
     {   
-        var hub = "pubsub";
         var message = JsonConvert.SerializeObject(location);
-        var serviceClient = new WebPubSubServiceClient(connectionString, hub);
-        await serviceClient.SendToAllAsync(message);
-        return Task.CompletedTask;
+        var serviceClient = new WebPubSubServiceClient(_connectionString, _hub);
+        await serviceClient.SendToAllAsync(message);   
     }
 }
 
