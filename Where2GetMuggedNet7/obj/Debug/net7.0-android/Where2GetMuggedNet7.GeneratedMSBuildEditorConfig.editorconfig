@@ -12,33 +12,33 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = Where2GetMuggedNet7
-build_property.ProjectDir = C:\Development\Where2GetMuggedNet7\Where2GetMuggedNet7\
+build_property.ProjectDir = C:\Users\LloydRadebe\source\repos\Where2GetMugged\Where2GetMuggedNet7\
 
-[C:/Development/Where2GetMuggedNet7/Where2GetMuggedNet7/App.xaml]
+[C:/Users/LloydRadebe/source/repos/Where2GetMugged/Where2GetMuggedNet7/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Where2GetMuggedNet7.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Development/Where2GetMuggedNet7/Where2GetMuggedNet7/AppShell.xaml]
+[C:/Users/LloydRadebe/source/repos/Where2GetMugged/Where2GetMuggedNet7/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Where2GetMuggedNet7.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Development/Where2GetMuggedNet7/Where2GetMuggedNet7/MainPage.xaml]
+[C:/Users/LloydRadebe/source/repos/Where2GetMugged/Where2GetMuggedNet7/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Where2GetMuggedNet7.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Development/Where2GetMuggedNet7/Where2GetMuggedNet7/Resources/Styles/Colors.xaml]
+[C:/Users/LloydRadebe/source/repos/Where2GetMugged/Where2GetMuggedNet7/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Where2GetMuggedNet7.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[C:/Development/Where2GetMuggedNet7/Where2GetMuggedNet7/Resources/Styles/Styles.xaml]
+[C:/Users/LloydRadebe/source/repos/Where2GetMugged/Where2GetMuggedNet7/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Where2GetMuggedNet7.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
